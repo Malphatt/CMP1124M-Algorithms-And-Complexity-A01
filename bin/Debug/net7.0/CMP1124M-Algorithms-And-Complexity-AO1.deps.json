@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "CMP1124M-Algorithms-And-Complexity-AO1/1.0.0": {
+        "runtime": {
+          "CMP1124M-Algorithms-And-Complexity-AO1.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CMP1124M-Algorithms-And-Complexity-AO1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
