@@ -67,7 +67,32 @@ namespace CMP1124M_OOP {
             return returnRoad.ToArray(); // Return the returnRoad array
         }
 
-        public String[][] FindElement(String road, String searchValue) { // This method returns the location of the value in the road
+        String[][] getLocationArray(String[] selectedRoad, String searchValue) {
+            
+            List<String[]> locationList = new List<String[]>(); // Create a list to store the locations
+
+            // Loop through the road to find the locations at which the value is found and add them to the list
+            for (int location = 0; location < selectedRoad.Length; location++) {
+                if (selectedRoad[location] == searchValue) {
+                    String[] locationData = new String[2] {searchValue, (location + 1).ToString()};
+                    locationList.Add(locationData); // Add the location to the list
+                }
+            }
+            return  locationList.ToArray(); // Convert the list to an array and return it
+        }
+
+        bool findElement(String[] selectedRoad, String searchValue) {
+
+            for (int i = 0; i < selectedRoad.Length; i++) { // Loop through the road to find the value
+                if (selectedRoad[i] == searchValue) {
+                    return true; // Return true if the value is found
+                }
+            }
+
+            return false;
+        }
+        
+        public String[][] FindElements(String road, String searchValue) { // This method returns the location of the value in the road
 
             String[] selectedRoad;
 
@@ -83,22 +108,69 @@ namespace CMP1124M_OOP {
                 return new String[0][]; // Return an empty array (This should never happen but is needed to prevent errors)
             }
 
-            List<String[]> locationList = new List<String[]>(); // Create a list to store the locations
+            String[][] locationArray = getLocationArray(selectedRoad, searchValue); // Get the location of the value in the road
 
-            // Loop through the road to find the locations at which the value is found and add them to the list
-            for (int location = 0; location < selectedRoad.Length; location++) {
-                if (selectedRoad[location] == searchValue) {
-                    String[] locationData = new String[2] {searchValue, location.ToString()};
-                    locationList.Add(locationData); // Add the location to the list
+            if (locationArray.Length == 0) { // If the value is not found in the road
+
+                return FindElementsEmpty(selectedRoad, searchValue); // Find the next closest value in the road
+
+            } else {
+                return locationArray; // Convert the list to an array and return it
+            }
+        }
+
+        String[][] FindElementsEmpty(String[] selectedRoad, String searchValue) { // This method returns the location of the value in the road
+            
+            bool found = false; // This is used to determine if the next closest value is found in the road
+            int incrementValue = 1; // This is the value that is added to the search value to find the next closest value
+            
+            while (!found) {
+
+                String newSearchValueBefore = (int.Parse(searchValue) - incrementValue).ToString(); // The next closest value
+                String newSearchValueAfter = (int.Parse(searchValue) + incrementValue).ToString(); // The next closest value
+
+                if (!findElement(selectedRoad, newSearchValueBefore) && !findElement(selectedRoad, newSearchValueAfter)) { // If the next closest value is not found in the road
+                    
+                    incrementValue++; // Increase the increment value
+
+                } else { // The next closest value is found in the road
+
+                    found = true;
+                    List<String[]> locationList = new List<String[]>(); // Create a list to store the locations
+
+                    // If the next closest value is found in the road before and after the search value
+                    if (findElement(selectedRoad, newSearchValueBefore) && findElement(selectedRoad, newSearchValueAfter)) {
+
+                        // Get the locations of the closest value before and after the search value
+                        String[][] locationArrayBefore = getLocationArray(selectedRoad, newSearchValueBefore);
+                        String[][] locationArrayAfter = getLocationArray(selectedRoad, newSearchValueAfter);
+
+                        // Join the two arrays together
+                        String[][] locationArray = new String[locationArrayBefore.Length + 1 + locationArrayAfter.Length][]; // Create a new array to store the locations
+                        
+                        locationArrayBefore.CopyTo(locationArray, 0); // Copy the locations after the search value to the new array
+                        locationArray[locationArrayBefore.Length] = new String[2] {"", ""}; // Adds a blank line to the array
+                        locationArrayAfter.CopyTo(locationArray, locationArrayBefore.Length + 1); // Copy the locations before the search value to the new array
+
+                        return locationArray; // Return the array
+
+                    } else
+                    // If the next closest value is found in the road after the search value
+                    if (findElement(selectedRoad, newSearchValueBefore)) {
+
+                        return getLocationArray(selectedRoad, newSearchValueBefore); // Get the locations of the closest value after the search value
+
+                    } else
+                    // If the next closest value is found in the road before the search value
+                    if (findElement(selectedRoad, newSearchValueAfter)) {
+
+                        // Get the locations of the closest value before the search value
+                        return getLocationArray(selectedRoad, newSearchValueAfter);
+
+                    }
                 }
             }
-
-            return locationList.ToArray(); // Convert the list to an array and return it
-            // if (locationList.Count == 0) { // If the value is not found in the road
-                
-            // } else {
-
-            // }
+            return new String[0][]; // Return an empty array (This should never happen but is needed to prevent errors)
         }
     }
 }

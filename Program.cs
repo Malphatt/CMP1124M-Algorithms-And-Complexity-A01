@@ -7,33 +7,33 @@
 
         static void Main(string[] args) {
 
-            // Display the 10th element of each road in ascending order
-            foreach (String element in roads.Display10Elements("Road_1_256", true)) {
-                Console.WriteLine(element);
-            }
-            Console.WriteLine();
-            foreach (String element in roads.Display10Elements("Road_2_256", true)) {
-                Console.WriteLine(element);
-            }
-            Console.WriteLine();
-            foreach (String element in roads.Display10Elements("Road_3_256", true)) {
-                Console.WriteLine(element);
-            }
-            Console.WriteLine();
+            // // Display the 10th element of each road in ascending order
+            // foreach (String element in roads.Display10Elements("Road_1_256", true)) {
+            //     Console.WriteLine(element);
+            // }
+            // Console.WriteLine();
+            // foreach (String element in roads.Display10Elements("Road_2_256", true)) {
+            //     Console.WriteLine(element);
+            // }
+            // Console.WriteLine();
+            // foreach (String element in roads.Display10Elements("Road_3_256", true)) {
+            //     Console.WriteLine(element);
+            // }
+            // Console.WriteLine();
 
-            // Display the 10th element of each road in descending order
-            foreach (String element in roads.Display10Elements("Road_1_256", false)) {
-                Console.WriteLine(element);
-            }
-            Console.WriteLine();
-            foreach (String element in roads.Display10Elements("Road_2_256", false)) {
-                Console.WriteLine(element);
-            }
-            Console.WriteLine();
-            foreach (String element in roads.Display10Elements("Road_3_256", false)) {
-                Console.WriteLine(element);
-            }
-            Console.WriteLine();
+            // // Display the 10th element of each road in descending order
+            // foreach (String element in roads.Display10Elements("Road_1_256", false)) {
+            //     Console.WriteLine(element);
+            // }
+            // Console.WriteLine();
+            // foreach (String element in roads.Display10Elements("Road_2_256", false)) {
+            //     Console.WriteLine(element);
+            // }
+            // Console.WriteLine();
+            // foreach (String element in roads.Display10Elements("Road_3_256", false)) {
+            //     Console.WriteLine(element);
+            // }
+            // Console.WriteLine();
 
             inputRoad();
 
@@ -44,7 +44,7 @@
             bool inputRoad = false; // This variable is used to check if the user has entered a valid road name
             while (!inputRoad) { // While the user has not entered a valid road name
 
-                Console.Write("Enter a road name: ");
+                Console.Write("\nEnter a road name: ");
                 String? road = Console.ReadLine();
 
                 if (road == null || road == "") {
@@ -71,6 +71,8 @@
     
                     Console.Write("Enter an element: ");
                     String? element = Console.ReadLine();
+
+                    Console.WriteLine();
     
                     if (element == null || element == "") {
     
@@ -79,8 +81,18 @@
     
                     } else {
 
+                        // Check if the element is a number
+                        bool isNumber = int.TryParse(element, out int number);
+
+                        if (!isNumber) { // If the element is not a number
+
+                            Console.WriteLine("Invalid element");
+                             continue;
+
+                        }
+
                         inputElement = true; // Set the inputElement variable to true
-                        String[][] foundElement = roads.FindElement(road, element); // Call the FindElement method
+                        String[][] foundElement = roads.FindElements(road, element); // Call the FindElement method
                         
                         if (foundElement.Length == 0) { // If the element was not found
 
@@ -89,7 +101,11 @@
                             
                         } else { // If the element was found
                             foreach (String[] elementLocation in foundElement) { // Display the location of the element
-                                Console.WriteLine("Element: " + elementLocation[0] + " | Found At Location: " + elementLocation[1]);
+                                if (elementLocation[0] != "") {
+                                    Console.WriteLine("  Element: " + elementLocation[0] + " | Found At Location: " + elementLocation[1]);
+                                } else {
+                                    Console.WriteLine();
+                                }
                             }
                         }
                     }
