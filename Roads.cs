@@ -20,6 +20,9 @@ namespace CMP1124M_OOP {
         String[] Road_3_2048; // This is the string array that stores the contents of Road_3_2048.txt
         public String[] _Road_3_2048 { get { return Road_3_2048; } }
 
+        String[] Road_256_Merged; // This is the string array that stores the contents of Road_1_256.txt and Road_3_256.txt merged
+        public String[] _Road_256_Merged { get { return Road_256_Merged; } }
+
 
         public Roads() { // This constructor reads the road files and stores them in the string arrays
             Road_1_256 = System.IO.File.ReadAllLines("Roads/Road_1_256.txt");
@@ -30,6 +33,9 @@ namespace CMP1124M_OOP {
 
             Road_3_256 = System.IO.File.ReadAllLines("Roads/Road_3_256.txt");
             Road_3_2048 = System.IO.File.ReadAllLines("Roads/Road_3_2048.txt");
+
+            // Merge Road_1_256 and Road_3_256 into Road_1_3_256_Merged
+            Road_256_Merged = Road_1_256.Concat(Road_3_256).ToArray();
         }
 
 
@@ -75,9 +81,13 @@ namespace CMP1124M_OOP {
             } else
             if (road == "Road_3_2048") { // If the road is Road_3_2048
                 selectedRoad = _Road_3_2048;
-            } else { //
+            } else
+            if (road == "Road_256_Merged") { // If the road is Road_256_Merged
+                selectedRoad = _Road_256_Merged;
+            } else {
                 return new String[0]; // Return an empty array
             }
+
 
             List<String> returnRoad = new List<String>();
             String[] sortedRoad; // Sort the road in descending order
@@ -142,8 +152,11 @@ namespace CMP1124M_OOP {
             } else
             if (road == "Road_3_2048") { // If the road is Road_3_2048
                 selectedRoad = _Road_3_2048;
+            } else
+            if (road == "Road_256_Merged") { // If the road is Road_256_Merged
+                selectedRoad = Road_256_Merged;
             } else {
-                return new String[0][]; // Return an empty array (This should never happen but is needed to prevent errors)
+                return new String[0][]; // Return an empty array
             }
 
             String[][] locationArray = getLocationArray(selectedRoad, searchValue); // Get the location of the value in the road
