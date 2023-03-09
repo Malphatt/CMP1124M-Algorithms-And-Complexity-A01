@@ -7,37 +7,67 @@
 
         static void Main(string[] args) {
 
-            // // Display the 10th element of each road in ascending order
-            // foreach (String element in roads.Display10Elements("Road_1_256", true)) {
-            //     Console.WriteLine(element);
-            // }
-            // Console.WriteLine();
-            // foreach (String element in roads.Display10Elements("Road_2_256", true)) {
-            //     Console.WriteLine(element);
-            // }
-            // Console.WriteLine();
-            // foreach (String element in roads.Display10Elements("Road_3_256", true)) {
-            //     Console.WriteLine(element);
-            // }
-            // Console.WriteLine();
+            // Display the 10th element of each 256 road in ascending order
+            foreach (String element in roads.DisplayNumElements("Road_1_256", true, 10)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.DisplayNumElements("Road_2_256", true, 10)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.DisplayNumElements("Road_3_256", true, 10)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
 
-            // // Display the 10th element of each road in descending order
-            // foreach (String element in roads.Display10Elements("Road_1_256", false)) {
-            //     Console.WriteLine(element);
-            // }
-            // Console.WriteLine();
-            // foreach (String element in roads.Display10Elements("Road_2_256", false)) {
-            //     Console.WriteLine(element);
-            // }
-            // Console.WriteLine();
-            // foreach (String element in roads.Display10Elements("Road_3_256", false)) {
-            //     Console.WriteLine(element);
-            // }
-            // Console.WriteLine();
+            // Display the 10th element of each 256 road in descending order
+            foreach (String element in roads.DisplayNumElements("Road_1_256", false, 10)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.DisplayNumElements("Road_2_256", false, 10)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.DisplayNumElements("Road_3_256", false, 10)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+
+            // Display the 50th element of each 2048 road in ascending order
+            foreach (String element in roads.DisplayNumElements("Road_1_2048", true, 50)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.DisplayNumElements("Road_2_2048", true, 50)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.DisplayNumElements("Road_3_2048", true, 50)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+
+            // Display the 50th element of each 2048 road in descending order
+            foreach (String element in roads.DisplayNumElements("Road_1_2048", false, 50)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.DisplayNumElements("Road_2_2048", false, 50)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.DisplayNumElements("Road_3_2048", false, 50)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
 
             inputRoad();
 
         }
+
+
 
         static void inputRoad() { // Display the location of a user-defined element in a user-defined road
             
@@ -53,7 +83,7 @@
                     continue;
 
                 } else
-                if (road == "Road_1_256" || road == "Road_2_256" || road == "Road_3_256") { // If the road name is valid
+                if (road == "Road_1_256" || road == "Road_1_2048" || road == "Road_2_256" || road == "Road_2_2048" || road == "Road_3_256" || road == "Road_3_2048") { // If the road name is valid
                     
                     inputRoad = true; // Set the inputRoad variable to true
                     findElement(road); // Call the findElement method
