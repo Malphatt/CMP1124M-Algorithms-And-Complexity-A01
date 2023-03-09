@@ -44,28 +44,6 @@ namespace CMP1124M_OOP {
             Road_2048_Merged = Road_1_2048.Concat(Road_3_2048).ToArray();
         }
 
-
-        public String[] Sort(String[] selectedRoad) { // This method returns a string array of every 10th element of the road in ascending order
-
-            // Sorts the road in ascending order
-            int[] selectedRoadInt = Array.ConvertAll(selectedRoad, int.Parse); // Convert the string array to an int array
-            
-            // Perform an insertion sort on the array
-            for (int i = 1; i < selectedRoadInt.Length; i++) {
-                int j = i;
-                while (j > 0 && selectedRoadInt[j - 1] > selectedRoadInt[j]) {
-                    int temp = selectedRoadInt[j];
-                    selectedRoadInt[j] = selectedRoadInt[j - 1];
-                    selectedRoadInt[j - 1] = temp;
-                    j--;
-                }
-            }
-
-            selectedRoad = Array.ConvertAll(selectedRoadInt, element => element.ToString()); // Convert the int array back to a string array
-
-            return selectedRoad;
-        }
-
         public String[] DisplayNumElements(String road, bool ascending, int numElements) { // This method returns a string array of every 10th element of the road in ascending or descending order
 
             String[] selectedRoad;
@@ -101,32 +79,17 @@ namespace CMP1124M_OOP {
             List<String> returnRoad = new List<String>();
             String[] sortedRoad; // Sort the road in descending order
             
-            if (ascending) { // If the road is to be sorted in ascending order
-                sortedRoad = Sort(selectedRoad); // Sort the road in ascending order
-            } else { // If the road is to be sorted in descending order
-                sortedRoad = Sort(selectedRoad); // Sort the road in descending order
-                Array.Reverse(sortedRoad); // Reverse the road (This is needed because the road is sorted in ascending order)
-            }
+            Sort sort = new Sort(selectedRoad);
+            sortedRoad = sort.MergeSort(ascending); // Sort the road in ascending order
 
-            for (int i = 0; i < sortedRoad.Length; i += numElements) { // Add every 10th element to the returnRoad array
+            // Loop starts at numElements - 1 because the first element is at index 0 (e.g. 10th element is at index 9)
+            for (int i = numElements - 1; i < sortedRoad.Length; i += numElements) { // Add every (numElements)th element to the returnRoad array
                 returnRoad.Add(sortedRoad[i]);
             }
 
+            returnRoad.Add("Sorted in " + sort.Comparisons + " comparisons and " + sort.Steps + " steps"); // Add the number of comparisons and steps to the end of the array
+
             return returnRoad.ToArray(); // Return the returnRoad array
-        }
-
-        String[][] getLocationArray(String[] selectedRoad, String searchValue) {
-            
-            List<String[]> locationList = new List<String[]>(); // Create a list to store the locations
-
-            // Loop through the road to find the locations at which the value is found and add them to the list
-            for (int location = 0; location < selectedRoad.Length; location++) {
-                if (selectedRoad[location] == searchValue) {
-                    String[] locationData = new String[2] {searchValue, (location + 1).ToString()};
-                    locationList.Add(locationData); // Add the location to the list
-                }
-            }
-            return  locationList.ToArray(); // Convert the list to an array and return it
         }
 
         bool findElement(String[] selectedRoad, String searchValue) {
@@ -171,7 +134,7 @@ namespace CMP1124M_OOP {
                 return new String[0][]; // Return an empty array
             }
 
-            String[][] locationArray = getLocationArray(selectedRoad, searchValue); // Get the location of the value in the road
+            String[][] locationArray = new Search(selectedRoad).BinarySearch(Int32.Parse(searchValue)); // Get the location of the value in the road
 
             if (locationArray.Length == 0) { // If the value is not found in the road
 
@@ -205,8 +168,8 @@ namespace CMP1124M_OOP {
                     if (findElement(selectedRoad, newSearchValueBefore) && findElement(selectedRoad, newSearchValueAfter)) {
 
                         // Get the locations of the closest value before and after the search value
-                        String[][] locationArrayBefore = getLocationArray(selectedRoad, newSearchValueBefore);
-                        String[][] locationArrayAfter = getLocationArray(selectedRoad, newSearchValueAfter);
+                        String[][] locationArrayBefore = new Search(selectedRoad).LinearSearch(newSearchValueBefore);
+                        String[][] locationArrayAfter = new Search(selectedRoad).LinearSearch(newSearchValueAfter);
 
                         // Join the two arrays together
                         String[][] locationArray = new String[locationArrayBefore.Length + 1 + locationArrayAfter.Length][]; // Create a new array to store the locations
@@ -221,14 +184,14 @@ namespace CMP1124M_OOP {
                     // If the next closest value is found in the road after the search value
                     if (findElement(selectedRoad, newSearchValueBefore)) {
 
-                        return getLocationArray(selectedRoad, newSearchValueBefore); // Get the locations of the closest value after the search value
+                        return new Search(selectedRoad).LinearSearch(newSearchValueBefore); // Get the locations of the closest value after the search value
 
                     } else
                     // If the next closest value is found in the road before the search value
                     if (findElement(selectedRoad, newSearchValueAfter)) {
 
                         // Get the locations of the closest value before the search value
-                        return getLocationArray(selectedRoad, newSearchValueAfter);
+                        return new Search(selectedRoad).LinearSearch(newSearchValueAfter);
 
                     }
                 }

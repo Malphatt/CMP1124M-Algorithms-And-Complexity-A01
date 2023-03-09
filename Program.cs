@@ -95,16 +95,16 @@
 
 
         // Merged 2048 Road 
-            // Display the 10th element of the Merged 2048 road in ascending order
-            Console.WriteLine("\nDisplaying each 10th element of: Road_1_2048 and Road_2_2048 merged together in ascending order");
-            foreach (String element in roads.DisplayNumElements("Road_2048_Merged", true, 10)) {
+            // Display the 50th element of the Merged 2048 road in ascending order
+            Console.WriteLine("\nDisplaying each 50th element of: Road_1_2048 and Road_2_2048 merged together in ascending order");
+            foreach (String element in roads.DisplayNumElements("Road_2048_Merged", true, 50)) {
                 Console.WriteLine(element);
             }
             Console.WriteLine();
 
-            // Display the 10th element of the Merged 2048 road in descending order
-            Console.WriteLine("\nDisplaying each 10th element of: Road_1_2048 and Road_2_2048 merged together in descending order");
-            foreach (String element in roads.DisplayNumElements("Road_2048_Merged", false, 10)) {
+            // Display the 50th element of the Merged 2048 road in descending order
+            Console.WriteLine("\nDisplaying each 50th element of: Road_1_2048 and Road_2_2048 merged together in descending order");
+            foreach (String element in roads.DisplayNumElements("Road_2048_Merged", false, 50)) {
                 Console.WriteLine(element);
             }
             Console.WriteLine();
