@@ -78,16 +78,18 @@
                         continue;
     
                     } else {
+
                         inputElement = true; // Set the inputElement variable to true
-                        String[] foundElement = roads.FindElement(road, element); // Call the FindElement method
+                        String[][] foundElement = roads.FindElement(road, element); // Call the FindElement method
+                        
                         if (foundElement.Length == 0) { // If the element was not found
 
                             Console.WriteLine("Element not found"); // Display an error message
                             continue;
                             
-                        } else {
-                            foreach (String elementLocation in foundElement) { // Display the location of the element
-                                Console.WriteLine("Element: " + element + " | Found At Location: " + elementLocation);
+                        } else { // If the element was found
+                            foreach (String[] elementLocation in foundElement) { // Display the location of the element
+                                Console.WriteLine("Element: " + elementLocation[0] + " | Found At Location: " + elementLocation[1]);
                             }
                         }
                     }
