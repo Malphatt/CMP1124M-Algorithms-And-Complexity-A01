@@ -37,7 +37,18 @@ namespace CMP1124M_OOP {
 
             // Sorts the road in ascending order
             int[] selectedRoadInt = Array.ConvertAll(selectedRoad, int.Parse); // Convert the string array to an int array
-            Array.Sort(selectedRoadInt); // Sort the int array
+            
+            // Perform an insertion sort on the array
+            for (int i = 1; i < selectedRoadInt.Length; i++) {
+                int j = i;
+                while (j > 0 && selectedRoadInt[j - 1] > selectedRoadInt[j]) {
+                    int temp = selectedRoadInt[j];
+                    selectedRoadInt[j] = selectedRoadInt[j - 1];
+                    selectedRoadInt[j - 1] = temp;
+                    j--;
+                }
+            }
+
             selectedRoad = Array.ConvertAll(selectedRoadInt, element => element.ToString()); // Convert the int array back to a string array
 
             return selectedRoad;
