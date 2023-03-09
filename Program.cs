@@ -7,6 +7,7 @@
 
         static void Main(string[] args) {
 
+        // 256 Roads
             // Display the 10th element of each 256 road in ascending order
             Console.WriteLine("\nDisplaying each 10th element of: Road_1_256 in ascending order");
             foreach (String element in roads.DisplayNumElements("Road_1_256", true, 10)) {
@@ -42,6 +43,7 @@
             Console.WriteLine();
 
 
+        // 2048 Roads
             // Display the 50th element of each 2048 road in ascending order
             Console.WriteLine("\nDisplaying each 50th element of: Road_1_2048 in ascending order");
             foreach (String element in roads.DisplayNumElements("Road_1_2048", true, 50)) {
@@ -76,6 +78,7 @@
             Console.WriteLine();
 
 
+        // Merged 256 Road
             // Display the 10th element of the Merged 256 road in ascending order
             Console.WriteLine("\nDisplaying each 10th element of: Road_1_256 and Road_2_256 merged together in ascending order");
             foreach (String element in roads.DisplayNumElements("Road_256_Merged", true, 10)) {
@@ -86,6 +89,22 @@
             // Display the 10th element of the Merged 256 road in descending order
             Console.WriteLine("\nDisplaying each 10th element of: Road_1_256 and Road_2_256 merged together in descending order");
             foreach (String element in roads.DisplayNumElements("Road_256_Merged", false, 10)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+
+
+        // Merged 2048 Road 
+            // Display the 10th element of the Merged 2048 road in ascending order
+            Console.WriteLine("\nDisplaying each 10th element of: Road_1_2048 and Road_2_2048 merged together in ascending order");
+            foreach (String element in roads.DisplayNumElements("Road_2048_Merged", true, 10)) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+
+            // Display the 10th element of the Merged 2048 road in descending order
+            Console.WriteLine("\nDisplaying each 10th element of: Road_1_2048 and Road_2_2048 merged together in descending order");
+            foreach (String element in roads.DisplayNumElements("Road_2048_Merged", false, 10)) {
                 Console.WriteLine(element);
             }
             Console.WriteLine();
@@ -115,7 +134,7 @@
                 if (road.ToUpper() == "Q") { // If the user wants to exit the program
                     Environment.Exit(0);
                 } else
-                if (road == "Road_1_256" || road == "Road_1_2048" || road == "Road_2_256" || road == "Road_2_2048" || road == "Road_3_256" || road == "Road_3_2048" || road == "Road_256_Merged") { // If the road name is valid
+                if (road == "Road_1_256" || road == "Road_1_2048" || road == "Road_2_256" || road == "Road_2_2048" || road == "Road_3_256" || road == "Road_3_2048" || road == "Road_256_Merged" || road == "Road_2048_Merged") { // If the road name is valid
                     
                     inputRoad = true; // Set the inputRoad variable to true
                     findElement(road); // Call the findElement method

@@ -23,6 +23,9 @@ namespace CMP1124M_OOP {
         String[] Road_256_Merged; // This is the string array that stores the contents of Road_1_256.txt and Road_3_256.txt merged
         public String[] _Road_256_Merged { get { return Road_256_Merged; } }
 
+        String[] Road_2048_Merged; // This is the string array that stores the contents of Road_1_2048.txt and Road_3_2048.txt merged
+        public String[] _Road_2048_Merged { get { return Road_2048_Merged; } }
+
 
         public Roads() { // This constructor reads the road files and stores them in the string arrays
             Road_1_256 = System.IO.File.ReadAllLines("Roads/Road_1_256.txt");
@@ -34,8 +37,11 @@ namespace CMP1124M_OOP {
             Road_3_256 = System.IO.File.ReadAllLines("Roads/Road_3_256.txt");
             Road_3_2048 = System.IO.File.ReadAllLines("Roads/Road_3_2048.txt");
 
-            // Merge Road_1_256 and Road_3_256 into Road_1_3_256_Merged
+            // Merge Road_1_256 and Road_3_256 into Road_256_Merged
             Road_256_Merged = Road_1_256.Concat(Road_3_256).ToArray();
+
+            // Merge Road_1_2048 and Road_3_2048 into Road_2048_Merged
+            Road_2048_Merged = Road_1_2048.Concat(Road_3_2048).ToArray();
         }
 
 
@@ -84,6 +90,9 @@ namespace CMP1124M_OOP {
             } else
             if (road == "Road_256_Merged") { // If the road is Road_256_Merged
                 selectedRoad = _Road_256_Merged;
+            } else
+            if (road == "Road_2048_Merged") { // If the road is Road_2048_Merged
+                selectedRoad = _Road_2048_Merged;
             } else {
                 return new String[0]; // Return an empty array
             }
@@ -155,6 +164,9 @@ namespace CMP1124M_OOP {
             } else
             if (road == "Road_256_Merged") { // If the road is Road_256_Merged
                 selectedRoad = Road_256_Merged;
+            } else
+            if (road == "Road_2048_Merged") { // If the road is Road_2048_Merged
+                selectedRoad = Road_2048_Merged;
             } else {
                 return new String[0][]; // Return an empty array
             }
