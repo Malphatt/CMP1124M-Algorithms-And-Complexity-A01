@@ -6,37 +6,33 @@
             // Create a new instance of the Roads class
             Roads roads = new Roads();
 
-            // Sort the roads in ascending order
-            roads.SortAscending("Road_1_256");
-            roads.SortAscending("Road_2_256");
-            roads.SortAscending("Road_3_256");
+            // Display the 10th element of each road in ascending order
+            foreach (String element in roads.Display10SortAscending("Road_1_256")) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.Display10SortAscending("Road_2_256")) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
+            foreach (String element in roads.Display10SortAscending("Road_3_256")) {
+                Console.WriteLine(element);
+            }
+            Console.WriteLine();
 
-            //Display every 10th element of the roads
-            for (int i = 0; i < roads._Road_1_256.Length; i += 10) {
-                Console.WriteLine(roads._Road_1_256[i]);
+            // Display the 10th element of each road in descending order
+            foreach (String element in roads.Display10SortDescending("Road_1_256")) {
+                Console.WriteLine(element);
             }
-            for (int i = 0; i < roads._Road_2_256.Length; i += 10) {
-                Console.WriteLine(roads._Road_2_256[i]);
+            Console.WriteLine();
+            foreach (String element in roads.Display10SortDescending("Road_2_256")) {
+                Console.WriteLine(element);
             }
-            for (int i = 0; i < roads._Road_3_256.Length; i += 10) {
-                Console.WriteLine(roads._Road_3_256[i]);
+            Console.WriteLine();
+            foreach (String element in roads.Display10SortDescending("Road_3_256")) {
+                Console.WriteLine(element);
             }
-
-            // Sort the roads in descending order
-            roads.SortDescending("Road_1_256");
-            roads.SortDescending("Road_2_256");
-            roads.SortDescending("Road_3_256");
-
-            //Display every 10th element of the roads
-            for (int i = 0; i < roads._Road_1_256.Length; i += 10) {
-                Console.WriteLine(roads._Road_1_256[i]);
-            }
-            for (int i = 0; i < roads._Road_2_256.Length; i += 10) {
-                Console.WriteLine(roads._Road_2_256[i]);
-            }
-            for (int i = 0; i < roads._Road_3_256.Length; i += 10) {
-                Console.WriteLine(roads._Road_3_256[i]);
-            }
+            Console.WriteLine();
         }
     }
 }
