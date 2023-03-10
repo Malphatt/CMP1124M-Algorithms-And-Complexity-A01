@@ -1,4 +1,4 @@
-namespace CMP1124M_OOP {
+namespace CMP1124M_AlgorithmsAndComplexity {
 
     class Roads {
 
@@ -44,7 +44,7 @@ namespace CMP1124M_OOP {
             Road_2048_Merged = Road_1_2048.Concat(Road_3_2048).ToArray();
         }
 
-        public String[] DisplayNumElements(String road, bool ascending, int numElements) { // This method returns a string array of every 10th element of the road in ascending or descending order
+        public String[] DisplayNumElements(String road, bool ascending, int sortType, int numElements) { // This method returns a string array of every 10th element of the road in ascending or descending order
 
             String[] selectedRoad;
 
@@ -80,14 +80,27 @@ namespace CMP1124M_OOP {
             String[] sortedRoad; // Sort the road in descending order
             
             Sort sort = new Sort(selectedRoad);
-            sortedRoad = sort.MergeSort(ascending); // Sort the road in ascending order
+            if (sortType == 1) {
+                sortedRoad = sort.BubbleSort(ascending);
+            } else
+            if (sortType == 2) {
+                sortedRoad = sort.InsertionSort(ascending);
+            } else
+            if (sortType == 3) {
+                sortedRoad = sort.MergeSort(ascending); // Sort the road in ascending order
+            } else
+            if (sortType == 4) {
+                sortedRoad = sort.QuickSort(ascending);
+            } else {
+                return new String[0]; // Return an empty array
+            }
 
             // Loop starts at numElements - 1 because the first element is at index 0 (e.g. 10th element is at index 9)
             for (int i = numElements - 1; i < sortedRoad.Length; i += numElements) { // Add every (numElements)th element to the returnRoad array
                 returnRoad.Add(sortedRoad[i]);
             }
 
-            returnRoad.Add("Sorted in " + sort.Comparisons + " comparisons and " + sort.Steps + " steps"); // Add the number of comparisons and steps to the end of the array
+            returnRoad.Add("Data sorted in " + sort.Steps + " steps"); // Add the number of steps to the end of the array
 
             return returnRoad.ToArray(); // Return the returnRoad array
         }

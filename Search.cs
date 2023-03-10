@@ -1,4 +1,4 @@
-namespace CMP1124M_OOP {
+namespace CMP1124M_AlgorithmsAndComplexity {
 
     class Search {
 

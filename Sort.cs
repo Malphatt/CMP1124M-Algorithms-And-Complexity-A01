@@ -1,11 +1,8 @@
-namespace CMP1124M_OOP {
+namespace CMP1124M_AlgorithmsAndComplexity {
 
     class Sort {
 
-        // Used Encapsulation to ensure swaps and comparisons are not changed by the user
-        int comparisons;
-        public int Comparisons { get { return comparisons; } }
-
+        // Used Encapsulation to ensure steps are not changed by the user
         int steps;
         public int Steps { get { return steps; } }
 
@@ -14,7 +11,6 @@ namespace CMP1124M_OOP {
         public Sort(String[] selectedRoad) {
 
             this.selectedRoad = selectedRoad;
-            comparisons = 0;
             steps = 0;
         }
 
@@ -64,7 +60,6 @@ namespace CMP1124M_OOP {
 
                                 steps++;
                             }
-                            comparisons++;
                         }
                     }
                 } else { // Sorts the road in descending order
@@ -82,7 +77,6 @@ namespace CMP1124M_OOP {
 
                                 steps++;
                             }
-                            comparisons++;
                         }
                     }
                 }
@@ -137,7 +131,6 @@ namespace CMP1124M_OOP {
 
                         steps++;
                     }
-                    comparisons++;
                 }
             } else { // Sorts the road in descending order
                 // Perform an insertion sort on the array
@@ -156,7 +149,6 @@ namespace CMP1124M_OOP {
 
                         steps++;
                     }
-                    comparisons++;
                 }
             }
 
@@ -222,7 +214,7 @@ namespace CMP1124M_OOP {
 
                 return MergeAscending(array, left, middle, right);
             }
-
+            steps++;
             return array;
         }
 
@@ -272,7 +264,7 @@ namespace CMP1124M_OOP {
                     
                 }
             }
-
+            steps++;
             return array;
         }
 
@@ -290,7 +282,7 @@ namespace CMP1124M_OOP {
 
                 return MergeDescending(array, left, middle, right);
             }
-
+            steps++;
             return array;
         }
 
@@ -340,7 +332,7 @@ namespace CMP1124M_OOP {
 
                 }
             }
-
+            steps++;
             return array;
         }
 
@@ -374,6 +366,105 @@ namespace CMP1124M_OOP {
         // https://en.wikipedia.org/wiki/Quicksort
         //
         // ==============================
-        
+        public String[] QuickSort(bool ascending) {
+
+            int[] selectedRoadInt = Array.ConvertAll(selectedRoad, int.Parse); // Convert the string array to an int array
+
+            if (ascending) { // Sorts the road in ascending order
+                // Perform a quick sort on the array
+                selectedRoadInt = QuickSortAscending(selectedRoadInt, 0, selectedRoadInt.Length - 1);
+            } else { // Sorts the road in descending order
+                // Perform a quick sort on the array
+                selectedRoadInt = QuickSortDescending(selectedRoadInt, 0, selectedRoadInt.Length - 1);
+            }
+
+            selectedRoad = Array.ConvertAll(selectedRoadInt, element => element.ToString()); // Convert the int array back to a string array
+
+            return selectedRoad;
+        }
+
+        // Recursively call QuickSortAscending on the sub-arrays until the sub-arrays are of size 1
+        int[] QuickSortAscending(int[] array, int left, int right) {
+
+            if (left < right) {
+
+                int pivot = PartitionAscending(array, left, right);
+
+                QuickSortAscending(array, left, pivot - 1);
+                QuickSortAscending(array, pivot + 1, right);
+
+                steps++;
+            }
+            steps++;
+            return array;
+        }
+
+        // Recursively call QuickSortDescending on the sub-arrays until the sub-arrays are of size 1
+        int[] QuickSortDescending(int[] array, int left, int right) {
+
+            if (left < right) {
+
+                int pivot = PartitionDescending(array, left, right);
+
+                QuickSortDescending(array, left, pivot - 1);
+                QuickSortDescending(array, pivot + 1, right);
+
+                steps++;
+            }
+            steps++;
+            return array;
+        }
+
+        // Partition the array into two sub-arrays, one containing elements less than the pivot and one containing elements greater than the pivot
+        int PartitionAscending(int[] array, int left, int right) {
+
+            int pivot = array[right];
+            int i = left - 1;
+
+            for (int j = left; j < right; j++) {
+
+                if (array[j] <= pivot) {
+
+                    i++;
+
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+
+            int temp2 = array[i + 1];
+            array[i + 1] = array[right];
+            array[right] = temp2;
+
+            steps++;
+            return i + 1;
+        }
+
+        // Partition the array into two sub-arrays, one containing elements greater than the pivot and one containing elements less than the pivot
+        int PartitionDescending(int[] array, int left, int right) {
+
+            int pivot = array[right];
+            int i = left - 1;
+
+            for (int j = left; j < right; j++) {
+
+                if (array[j] >= pivot) {
+
+                    i++;
+
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+
+            int temp2 = array[i + 1];
+            array[i + 1] = array[right];
+            array[right] = temp2;
+
+            steps++;
+            return i + 1;
+        }
     }
 }
