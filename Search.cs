@@ -5,15 +5,15 @@ namespace CMP1124M_AlgorithmsAndComplexity {
         String[] selectedRoad;
         int[] encodedArray;
 
-        int searchedElements;
-        public int SearchedElements { get { return searchedElements; } }
+        int steps;
+        public int Steps { get { return steps; } }
 
 
         public Search(String[] selectedRoad) {
 
             this.selectedRoad = selectedRoad;
             encodedArray = new int[selectedRoad.Length];
-            searchedElements = 0;
+            steps = 0;
 
         }
 
@@ -48,7 +48,9 @@ namespace CMP1124M_AlgorithmsAndComplexity {
                     String[] locationData = new String[2] {searchValue, (location + 1).ToString()};
                     locationList.Add(locationData); // Add the location to the list
                 }
+                steps++;
             }
+            // locationList.Add(new String[2] {"SearchInfo", "Data Found in " + steps.ToString() + " steps"}); // Add the number of steps to the list
             return locationList.ToArray(); // Convert the list to an array and return it
         }
 
@@ -84,6 +86,7 @@ namespace CMP1124M_AlgorithmsAndComplexity {
             while (low <= high) {
 
                 int mid = (low + high) / 2;
+                steps++;
 
                 if (SortedArray[mid] == searchValue) {
 
@@ -97,6 +100,7 @@ namespace CMP1124M_AlgorithmsAndComplexity {
                         locationData = new String[2] {searchValue.ToString(), (encodedArray[nextLocation] + 1).ToString()};
                         locationList.Add(locationData);
                         nextLocation++;
+                        steps++;
                     }
 
                     // Search for the previous location
@@ -105,15 +109,18 @@ namespace CMP1124M_AlgorithmsAndComplexity {
                         locationData = new String[2] {searchValue.ToString(), (encodedArray[previousLocation] + 1).ToString()};
                         locationList.Add(locationData);
                         previousLocation--;
+                        steps++;
                     }
 
                     break;
                 }
                 else if (SortedArray[mid] < searchValue) {
                     low = mid + 1;
+                    steps++;
                 }
                 else {
                     high = mid - 1;
+                    steps++;
                 }
             }
             return PostBinarySearchSort(locationList.ToArray()); // Order the locations and return the list as an array
@@ -180,7 +187,7 @@ namespace CMP1124M_AlgorithmsAndComplexity {
 
                 }
             }
-
+            
             return locationList;
         }
     }

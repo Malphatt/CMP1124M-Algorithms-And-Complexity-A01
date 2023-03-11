@@ -116,7 +116,7 @@ namespace CMP1124M_AlgorithmsAndComplexity {
             return false;
         }
         
-        public String[][] FindElements(String road, String searchValue) { // This method returns the location of the value in the road
+        public String[][] FindElements(String road, int searchType, String searchValue) { // This method returns the location of the value in the road
 
             String[] selectedRoad;
 
@@ -147,18 +147,62 @@ namespace CMP1124M_AlgorithmsAndComplexity {
                 return new String[0][]; // Return an empty array
             }
 
-            String[][] locationArray = new Search(selectedRoad).BinarySearch(Int32.Parse(searchValue)); // Get the location of the value in the road
+            String[][] locationArray; // This is the array that will be returned
+            Search search = new Search(selectedRoad);
+            
+            if (searchType == 1) { // If the search type is linear search
+                locationArray = search.LinearSearch(searchValue);
+            } else
+            if (searchType == 2) { // If the search type is binary search
+                locationArray = search.BinarySearch(Int32.Parse(searchValue));
+            } else {
+                return new String[0][]; // Return an empty array
+            }
 
             if (locationArray.Length == 0) { // If the value is not found in the road
 
-                return FindElementsEmpty(selectedRoad, searchValue); // Find the next closest value in the road
+                return FindElementsEmpty(road, searchType, searchValue); // Find the next closest value in the road
 
             } else {
+                List<String[]> locationList = new List<String[]>(locationArray); // Convert the array to a list
+                locationList.Add(new String[2] {"SearchInfo" , "Data found in " + search.Steps + " steps" }); // Add the number of steps to the end of the array
+                locationArray = locationList.ToArray(); // Convert the list to an array and return it
+                
                 return locationArray; // Convert the list to an array and return it
             }
         }
 
-        String[][] FindElementsEmpty(String[] selectedRoad, String searchValue) { // This method returns the location of the value in the road
+        String[][] FindElementsEmpty(String road, int searchType, String searchValue) { // This method returns the location of the next closest value in the road
+
+            String[] selectedRoad;
+
+            if (road == "Road_1_256") { // If the road is Road_1_256
+                selectedRoad = _Road_1_256;
+            } else
+            if (road == "Road_1_2048") { // If the road is Road_1_2048
+                selectedRoad = _Road_1_2048;
+            } else
+            if (road == "Road_2_256") { // If the road is Road_2_256
+                selectedRoad = _Road_2_256;
+            } else
+            if (road == "Road_2_2048") { // If the road is Road_2_2048
+                selectedRoad = _Road_2_2048;
+            } else
+            if (road == "Road_3_256") { // If the road is Road_3_256
+                selectedRoad = _Road_3_256;
+            } else
+            if (road == "Road_3_2048") { // If the road is Road_3_2048
+                selectedRoad = _Road_3_2048;
+            } else
+            if (road == "Road_256_Merged") { // If the road is Road_256_Merged
+                selectedRoad = Road_256_Merged;
+            } else
+            if (road == "Road_2048_Merged") { // If the road is Road_2048_Merged
+                selectedRoad = Road_2048_Merged;
+            } else {
+                return new String[0][]; // Return an empty array
+            }
+
             
             bool found = false; // This is used to determine if the next closest value is found in the road
             int incrementValue = 1; // This is the value that is added to the search value to find the next closest value
@@ -181,8 +225,8 @@ namespace CMP1124M_AlgorithmsAndComplexity {
                     if (findElement(selectedRoad, newSearchValueBefore) && findElement(selectedRoad, newSearchValueAfter)) {
 
                         // Get the locations of the closest value before and after the search value
-                        String[][] locationArrayBefore = new Search(selectedRoad).LinearSearch(newSearchValueBefore);
-                        String[][] locationArrayAfter = new Search(selectedRoad).LinearSearch(newSearchValueAfter);
+                        String[][] locationArrayBefore = FindElements(road, searchType, newSearchValueBefore);
+                        String[][] locationArrayAfter = FindElements(road, searchType, newSearchValueAfter);
 
                         // Join the two arrays together
                         String[][] locationArray = new String[locationArrayBefore.Length + 1 + locationArrayAfter.Length][]; // Create a new array to store the locations
@@ -197,14 +241,15 @@ namespace CMP1124M_AlgorithmsAndComplexity {
                     // If the next closest value is found in the road after the search value
                     if (findElement(selectedRoad, newSearchValueBefore)) {
 
-                        return new Search(selectedRoad).LinearSearch(newSearchValueBefore); // Get the locations of the closest value after the search value
+                        // Get the locations of the closest value after the search value
+                        return FindElements(road, searchType, newSearchValueBefore);
 
                     } else
                     // If the next closest value is found in the road before the search value
                     if (findElement(selectedRoad, newSearchValueAfter)) {
 
                         // Get the locations of the closest value before the search value
-                        return new Search(selectedRoad).LinearSearch(newSearchValueAfter);
+                        return FindElements(road, searchType, newSearchValueAfter);
 
                     }
                 }

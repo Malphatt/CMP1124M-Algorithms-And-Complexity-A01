@@ -51,7 +51,7 @@ namespace CMP1124M_AlgorithmsAndComplexity {
 
         }
 
-        public void FindElements(int roadType, int road, String element) {
+        public void FindElements(int roadType, int road, int searchType, String element) {
 
             String roadString = "";
 
@@ -84,11 +84,15 @@ namespace CMP1124M_AlgorithmsAndComplexity {
             }
 
                 
-            String[][] foundElement = roads.FindElements(roadString, element); // Call the FindElement method
+            String[][] foundElement = roads.FindElements(roadString, searchType, element); // Call the FindElement method
                     
             foreach (String[] elementLocation in foundElement) { // Display the locations of the element(s)
                 if (elementLocation[0] != "") {
-                    Console.WriteLine("  Element: " + elementLocation[0] + " | Found At Location: " + elementLocation[1]);
+                    if (elementLocation[0] == "SearchInfo") {
+                        Console.WriteLine("  " + elementLocation[1]);
+                    } else {
+                        Console.WriteLine("  Element: " + elementLocation[0] + " | Found At Location: " + elementLocation[1]);
+                    }
                 } else {
                     Console.WriteLine();
                 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matth\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-AO1\\CMP1124M-A01-2223\\CMP1124M-Algorithms-And-Complexity-AO1.csproj": {}
+    "C:\\Users\\Malphatt\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-A01\\CMP1124M-Algorithms-And-Complexity-AO1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matth\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-AO1\\CMP1124M-A01-2223\\CMP1124M-Algorithms-And-Complexity-AO1.csproj": {
+    "C:\\Users\\Malphatt\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-A01\\CMP1124M-Algorithms-And-Complexity-AO1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matth\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-AO1\\CMP1124M-A01-2223\\CMP1124M-Algorithms-And-Complexity-AO1.csproj",
+        "projectUniqueName": "C:\\Users\\Malphatt\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-A01\\CMP1124M-Algorithms-And-Complexity-AO1.csproj",
         "projectName": "CMP1124M-Algorithms-And-Complexity-AO1",
-        "projectPath": "C:\\Users\\Matth\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-AO1\\CMP1124M-A01-2223\\CMP1124M-Algorithms-And-Complexity-AO1.csproj",
-        "packagesPath": "C:\\Users\\Matth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matth\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-AO1\\CMP1124M-A01-2223\\obj\\",
+        "projectPath": "C:\\Users\\Malphatt\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-A01\\CMP1124M-Algorithms-And-Complexity-AO1.csproj",
+        "packagesPath": "C:\\Users\\Malphatt\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Malphatt\\OneDrive\\Documents\\__Work__\\University\\Year 1\\CMP1124M (Algorithms & Complexity)\\CMP1124M-Algorithms-And-Complexity-A01\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Malphatt\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

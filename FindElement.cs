@@ -40,7 +40,7 @@ namespace CMP1124M_AlgorithmsAndComplexity {
                     } else {
                         roadType = number; // Set the roadType variable to the user input
                         if (roadType == 3 || roadType == 4) { // If the road type is 3 or 4
-                            InputElement(roadType, 0); // Call the inputElement method
+                            InputSearchType(roadType, 0); // Call the inputElement method
                         } else {
                             InputRoad(roadType); // Call the InputRoad method
                         }
@@ -82,13 +82,52 @@ namespace CMP1124M_AlgorithmsAndComplexity {
                         continue;
                     } else { // If the road number is between 1 and 3
                         road = number; // Set the road variable to the user input
-                        InputElement(roadType, road); // Call the InputElement method
+                        InputSearchType(roadType, road); // Call the InputElement method
                     }
                 }
             }
         }
 
-        void InputElement(int roadType, int road) {
+        void InputSearchType(int roadType, int road) {
+
+            int searchType = 0; // This variable is used to store the search type
+
+            bool inputSearchType = false; // This variable is used to check if the user has entered a valid search type
+            while (!inputSearchType) {
+
+                Console.Write("\nSelect a search type (1 = Linear Search, 2 = Binary Search): ");
+                String? searchTypeString = Console.ReadLine();
+
+                if (searchTypeString == null || searchTypeString == "") {
+
+                    return;
+
+                } else
+                if (searchTypeString.ToUpper() == "Q") { // If the user wants to exit the program
+                    Environment.Exit(0);
+                } else {
+
+                    // Check if the search type is a number
+                    bool isNumber = int.TryParse(searchTypeString, out int number);
+
+                    if (!isNumber) { // If the search type is not a number
+
+                        Console.WriteLine("Invalid search type");
+                        continue;
+
+                    }
+                    if (number < 1 || number > 2) { // If the search type is not between 1 and 2
+                        Console.WriteLine("Invalid search type");
+                        continue;
+                    } else { // If the search type is between 1 and 2
+                        searchType = number; // Set the searchType variable to the user input
+                        InputElement(roadType, road, searchType); // Call the InputElement method
+                    }
+                }
+            }
+        }
+
+        void InputElement(int roadType, int road, int searchType) {
 
             bool inputElement = false; // This variable is used to check if the user has entered a valid element
             while (!inputElement) { // While the user has not entered a valid element
@@ -116,7 +155,7 @@ namespace CMP1124M_AlgorithmsAndComplexity {
                         continue;
 
                     }
-                    displayRoads.FindElements(3, 0, element); // Call the FindElement method
+                    displayRoads.FindElements(roadType, road, searchType, element); // Call the FindElement method
                     return;
                 }
             }
